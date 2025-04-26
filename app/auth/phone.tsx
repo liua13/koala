@@ -24,7 +24,7 @@ export default function PhoneAuthScreen() {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
+      <StatusBar style="dark" />
       <View style={styles.content}>
         <Text style={styles.title}>Enter your phone number</Text>
         <Text style={styles.subtitle}>We'll send you a verification code</Text>
@@ -40,6 +40,7 @@ export default function PhoneAuthScreen() {
             selectTextOnFocus={false}
             spellCheck={false}
             autoCorrect={false}
+            placeholderTextColor="#606C38"
           />
         </View>
         
@@ -62,7 +63,7 @@ export default function PhoneAuthScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#FEFAE0',
   },
   content: {
     flex: 1,
@@ -74,12 +75,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: '#2c3e50',
+    color: '#283618',
   },
   subtitle: {
     fontSize: 16,
     marginBottom: 30,
-    color: '#7f8c8d',
+    color: '#606C38',
   },
   inputContainer: {
     width: '100%',
@@ -92,11 +93,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     fontSize: 18,
     borderWidth: 1,
-    borderColor: '#dfe6e9',
+    borderColor: '#DDA15E',
     width: '100%',
+    color: '#283618',
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#BC6C25',
     paddingVertical: 15,
     paddingHorizontal: 40,
     borderRadius: 25,
@@ -104,17 +106,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonDisabled: {
-    backgroundColor: '#b2dfdb',
+    backgroundColor: '#DDA15E',
+    opacity: 0.7,
   },
   buttonText: {
-    color: 'white',
+    color: '#FEFAE0',
     fontSize: 18,
     fontWeight: 'bold',
   },
   terms: {
     marginTop: 20,
     textAlign: 'center',
-    color: '#7f8c8d',
+    color: '#606C38',
     fontSize: 12,
   },
 });

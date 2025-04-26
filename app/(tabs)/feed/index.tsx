@@ -211,10 +211,6 @@ const ActivityItem = ({ activity }: { activity: Activity }) => {
 export default function FeedScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Activity Feed</Text>
-      </View>
-      
       <FlatList
         data={DUMMY_ACTIVITIES}
         renderItem={({ item }) => <ActivityItem activity={item} />}

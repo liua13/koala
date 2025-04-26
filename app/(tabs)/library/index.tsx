@@ -1,7 +1,16 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+
+// Color palette
+const COLORS = {
+  darkGreen: '#283618',
+  oliveGreen: '#606C38',
+  cream: '#FEFAE0',
+  tan: '#DDA15E',
+  rust: '#BC6C25',
+};
 
 // Dummy data for initial UI
 const DUMMY_BOOKS = [
@@ -61,10 +70,10 @@ interface Book {
 const BookItem = ({ book }: { book: Book }) => {
   const getStatusColor = (status: BookStatus) => {
     switch (status) {
-      case 'available': return '#4CAF50';
-      case 'borrowed': return '#FF9800';
-      case 'on_hold': return '#F44336';
-      default: return '#4CAF50';
+      case 'available': return COLORS.oliveGreen;
+      case 'borrowed': return COLORS.tan;
+      case 'on_hold': return COLORS.rust;
+      default: return COLORS.oliveGreen;
     }
   };
 
@@ -138,12 +147,16 @@ export default function LibraryScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.searchContainer}>
-        <Ionicons name="search" size={20} color="#7f8c8d" style={styles.searchIcon} />
+        <Ionicons name="search" size={20} color={COLORS.oliveGreen} style={styles.searchIcon} />
         <TextInput
           style={styles.searchInput}
           placeholder="Search books by title or author"
           value={searchQuery}
           onChangeText={setSearchQuery}
+          spellCheck={false}
+          autoCorrect={false}
+          placeholderTextColor={COLORS.oliveGreen}
+          color={COLORS.darkGreen}
         />
       </View>
       
@@ -162,7 +175,7 @@ export default function LibraryScreen() {
       />
       
       <TouchableOpacity style={styles.addButton} onPress={() => console.log('Add new book')}>
-        <Ionicons name="add" size={24} color="white" />
+        <Ionicons name="add" size={24} color={COLORS.cream} />
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -171,7 +184,7 @@ export default function LibraryScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: COLORS.cream,
   },
   searchContainer: {
     flexDirection: 'row',
@@ -181,8 +194,8 @@ const styles = StyleSheet.create({
     marginTop: 16,
     borderRadius: 8,
     paddingHorizontal: 12,
-    borderWidth: 1,
-    borderColor: '#dfe6e9',
+    borderWidth: 0.5,
+    borderColor: COLORS.tan,
   },
   searchIcon: {
     marginRight: 8,
@@ -194,7 +207,7 @@ const styles = StyleSheet.create({
   },
   filtersContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     paddingHorizontal: 16,
     marginTop: 16,
     marginBottom: 8,
@@ -203,13 +216,14 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 20,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: '#f0f0f0',
+    marginHorizontal: 10,
   },
   activeFilterTab: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: COLORS.oliveGreen,
   },
   filterText: {
-    color: '#7f8c8d',
+    color: COLORS.darkGreen,
     fontWeight: '500',
   },
   activeFilterText: {
@@ -217,10 +231,11 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     padding: 16,
+    paddingBottom: 100, // Extra padding at the bottom for the floating tab bar
   },
   bookItem: {
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: '#ECDCB6',
     borderRadius: 8,
     marginBottom: 16,
     padding: 12,
@@ -234,7 +249,7 @@ const styles = StyleSheet.create({
     width: 70,
     height: 100,
     borderRadius: 4,
-    backgroundColor: '#e0f2f1',
+    backgroundColor: COLORS.tan,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -249,12 +264,12 @@ const styles = StyleSheet.create({
   bookTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#2c3e50',
+    color: COLORS.darkGreen,
     marginBottom: 4,
   },
   bookAuthor: {
     fontSize: 14,
-    color: '#7f8c8d',
+    color: COLORS.oliveGreen,
     marginBottom: 8,
   },
   bookStatus: {
@@ -268,14 +283,14 @@ const styles = StyleSheet.create({
     paddingVertical: 40,
   },
   emptyText: {
-    color: '#7f8c8d',
+    color: COLORS.oliveGreen,
     fontSize: 16,
   },
   addButton: {
     position: 'absolute',
-    bottom: 24,
+    bottom: 100, // Position above the floating tab bar
     right: 24,
-    backgroundColor: '#4CAF50',
+    backgroundColor: COLORS.rust,
     width: 56,
     height: 56,
     borderRadius: 28,
@@ -286,5 +301,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 4,
+    zIndex: 10,
   },
 });

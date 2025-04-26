@@ -4,6 +4,15 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
 import { BlurView } from 'expo-blur';
 
+// Color palette
+const COLORS = {
+  darkGreen: '#283618',
+  oliveGreen: '#606C38',
+  cream: '#FEFAE0',
+  tan: '#DDA15E',
+  rust: '#BC6C25',
+};
+
 // Navigation header with notification and scan buttons
 function NavigationHeader() {
   const navigation = useNavigation();
@@ -11,11 +20,11 @@ function NavigationHeader() {
   return (
     <View style={styles.headerContainer}>
       <TouchableOpacity style={styles.iconButton} onPress={() => console.log('Notifications')}>
-        <Ionicons name="notifications-outline" size={24} color="#333" />
+        <Ionicons name="notifications-outline" size={24} color={COLORS.oliveGreen} />
       </TouchableOpacity>
       
       <TouchableOpacity style={styles.iconButton} onPress={() => console.log('Scan Book')}>
-        <Ionicons name="scan-outline" size={24} color="#333" />
+        <Ionicons name="scan-outline" size={24} color={COLORS.oliveGreen} />
       </TouchableOpacity>
     </View>
   );
@@ -27,12 +36,12 @@ export default function TabsLayout() {
       screenOptions={{
         headerRight: () => <NavigationHeader />,
         headerStyle: {
-          backgroundColor: '#f8f9fa',
+          backgroundColor: COLORS.cream,
         },
-        headerTintColor: '#2c3e50',
+        headerTintColor: COLORS.darkGreen,
         tabBarStyle: styles.tabBar,
-        tabBarActiveTintColor: '#4CAF50',
-        tabBarInactiveTintColor: '#95a5a6',
+        tabBarActiveTintColor: COLORS.rust,
+        tabBarInactiveTintColor: COLORS.oliveGreen,
         tabBarShowLabel: true,
         tabBarLabelStyle: {
           fontSize: 12,
@@ -94,7 +103,7 @@ const styles = StyleSheet.create({
     left: 16,
     right: 16,
     elevation: 4,
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
     borderRadius: 20,
     height: 70,
     shadowColor: '#000',
@@ -105,5 +114,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 8,
     paddingBottom: 6,
+    margin: 10,
   },
 });
