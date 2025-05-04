@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 // Dummy data for friend libraries
 const DUMMY_FRIENDS = [
@@ -95,6 +95,7 @@ export default function FriendsScreen() {
     <View style={styles.container}>
       {/* Map View */}
       <MapView
+        provider={PROVIDER_GOOGLE} googleMapId="af3c45d9c712c876"
         style={styles.map}
         initialRegion={{
           latitude: 37.78825,
